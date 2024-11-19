@@ -1,0 +1,8 @@
+server:
+  error:
+    include-message: always
+spring:
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5432/
+    username: postgres
+    password: password
