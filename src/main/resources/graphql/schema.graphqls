@@ -1,0 +1,44 @@
+# Books example - it has to reflect/match our data (dto/entity)
+type Author {
+    id: ID
+    name: String
+}
+
+type Book {
+    id: ID
+    name: String
+    pageCount: Int
+    author: Author
+}
+
+# Players example - it has to reflect/match our data (dto/entity)
+type Player {
+    id: ID!        # exclamation mark `!` means that id is always needed
+    name: String
+    team: Team
+}
+
+enum Team {
+    CSK
+    MI
+    DC
+    GT
+    RCB
+}
+
+# Mutation is useful when you want to mutate the data - for ex. when creating, updating or deleting the data
+type Mutation {
+    create(name: String, team: Team): Player
+    update(id: ID, name: String, team: Team): Player
+    delete(id: ID): Player
+}
+
+# Query is only for fetching the data - it is like specifying endpoint methods
+type Query {
+    # books demo
+    books: [Book]
+    bookById(id: Int): Book
+    # players demo
+    findAll: [Player]
+    findOne(id: ID): Player
+}
