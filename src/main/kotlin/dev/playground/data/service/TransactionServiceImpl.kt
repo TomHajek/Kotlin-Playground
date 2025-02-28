@@ -3,12 +3,11 @@ package dev.playground.data.service
 import dev.playground.data.mapper.Mapper.toDto
 import dev.playground.data.persistence.dto.TransactionDto
 import dev.playground.data.persistence.repository.TransactionRepository
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
 @Service
 class TransactionServiceImpl(
-    @Autowired private val repository: TransactionRepository
+    private val repository: TransactionRepository
 ) : TransactionService {
     
     override fun getTransactions(): List<TransactionDto> =
