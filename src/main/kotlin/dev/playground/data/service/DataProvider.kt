@@ -11,13 +11,17 @@ class DataProvider(
     
     fun getData(pdfTemplateType: PdfTemplateType, id: Long?): Any {
         return when(pdfTemplateType) {
-            PdfTemplateType.TRANSACTION ->
+            PdfTemplateType.TRANSACTION -> {
                 if (id != null) {
                     transactionService.getTransactionsByAccountId(id)
-                } else { transactionService.getTransactions() }
-            
-            PdfTemplateType.ACCOUNT -> id?.let { accountService.getAccountById(it) }
-                ?: throw IllegalArgumentException("Account ID is required for ACCOUNT PDF")
+                } else {
+                    transactionService.getTransactions()
+                }
+            }
+            PdfTemplateType.ACCOUNT -> {
+                id?.let { accountService.getAccountById(it) }
+                    ?: throw IllegalArgumentException("Account id is missing!")
+            }
         }
     }
     
