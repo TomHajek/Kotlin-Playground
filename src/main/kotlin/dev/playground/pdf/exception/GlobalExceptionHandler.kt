@@ -8,11 +8,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice
 @RestControllerAdvice
 class GlobalExceptionHandler {
     
-    @ExceptionHandler(NoSuchElementException::class)
-    fun handleNoSuchElementException(ex: NoSuchElementException): ResponseEntity<String> {
-        return ResponseEntity(ex.message, HttpStatus.BAD_REQUEST)
-    }
-    
     @ExceptionHandler(IllegalArgumentException::class)
     fun handleIllegalArgumentException(ex: IllegalArgumentException): ResponseEntity<String> {
         return ResponseEntity(ex.message, HttpStatus.BAD_REQUEST)
@@ -21,6 +16,11 @@ class GlobalExceptionHandler {
     @ExceptionHandler(UnsupportedPdfTemplateTypeException::class)
     fun handleUnsupportedTemplateTypeException(ex: UnsupportedPdfTemplateTypeException): ResponseEntity<String> {
         return ResponseEntity("Unsupported template type: ${ex.message}", HttpStatus.BAD_REQUEST)
+    }
+    
+    @ExceptionHandler(NoSuchElementException::class)
+    fun handleNoSuchElementException(ex: NoSuchElementException): ResponseEntity<String> {
+        return ResponseEntity(ex.message, HttpStatus.NOT_FOUND)
     }
     
     @ExceptionHandler(RuntimeException::class)
